@@ -56,3 +56,20 @@ function addTodo() {
   const parent = document.getElementById("todolist");
   parent.appendChild(createChild(title, description, globalId++));
 }
+
+
+// updating dom using state
+function updateDomAccToState(state){
+  const parent=document.getElementById("todolist");
+  parent.innerHTML='';
+  for(let i=0;i<state.length;i++){
+    const child=createChild(state[i].title, state[i].description,state[i].id);
+    parent.appendChild(child);
+  }
+}
+// fetching data from server
+window.setInterval(async function(){
+  const res=await fetch("https:://sum-server.100xdevs/todos");
+  const json=await res.json();
+  updateDomAccToState(json.todos)
+},5000)
