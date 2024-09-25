@@ -1,0 +1,93 @@
+This is index.js code logic and explaination
+
+Notes for Express.js Todo API Code
+
+
+1. Importing Required Modules
+javascript
+
+const express = require("express");
+const { createTodo, updateTodo } = require("./types");
+express: This is used to create the server and handle routing.
+createTodo & updateTodo: These are imported from the types module and likely refer to Zod schemas that are used for validating input for creating and updating todos.
+
+
+2. Setting Up Express Application
+javascript
+const app = express();
+app.use(express.json());
+const app = express(): Initializes the Express app.
+app.use(express.json()): This middleware is used to parse incoming JSON request bodies. Without this, the server won't understand JSON data in req.body.
+
+
+3. POST /todo (Create Todo Endpoint)
+javascript
+app.post("/todo", function (req, res) {
+  const createPayLoad = req.body; // Extract request body (data to create todo)
+  const parsePayLoad = createTodo.safeParse(createPayLoad); // Validate the input using Zod schema
+
+  if (!parsePayLoad.success) {
+    res.status(411).json({
+      msg: "You sent the wrong input",
+    });
+    return; // Return early if validation fails
+  }
+});
+Purpose: Handles the creation of a new todo.
+req.body: The incoming data from the client (usually contains the todo details).
+createTodo.safeParse: Zod validation to ensure the data structure is correct (validates the payload).
+Error Handling: If validation fails, returns a 411 status code with a message indicating wrong input.
+
+
+4. GET /todos (Fetch All Todos)
+javascript
+app.get("/todos", function (req, res) {
+  // Fetch and return all todo items here
+});
+Purpose: This route is supposed to retrieve all todos from the database (or memory).
+To Do: Implement logic to fetch todos and send them as a response.
+
+
+5. PUT /completed (Mark Todo as Completed)
+javascript
+app.put("/completed", function (req, res) {
+  const updatePayLoad = req.body; // Extract request body (data for updating todo)
+  const parsePayLoad = updateTodo.safeParse(updatePayLoad); // Validate the input using Zod schema
+
+  if (!parsePayLoad.success) {
+    res.status(411).json({
+      msg: "You sent the wrong input",
+    });
+    return; // Return early if validation fails
+  }
+});
+Purpose: This route is designed to update a todo (mark it as completed or modify it).
+updateTodo.safeParse: Zod validation to ensure the incoming data is valid for updating.
+Error Handling: If validation fails, it returns an error response with status code 411.
+Key Concepts
+Validation with Zod:
+
+createTodo.safeParse(data) and updateTodo.safeParse(data) are methods from the Zod library, used to validate the incoming payloads.
+If validation fails, the response is handled gracefully by returning an error message and preventing the execution of further code.
+Routes:
+
+POST /todo: For creating a new todo.
+GET /todos: For fetching all todos (yet to be implemented).
+PUT /completed: For updating a todo (marking it as completed or making modifications).
+Error Handling:
+
+Uses status code 411 to indicate invalid input in both POST and PUT routes when the Zod validation fails.
+To Do
+Implement the logic for fetching todos in the GET route (/todos).
+In the POST and PUT routes, add logic to handle successful cases (e.g., saving the new todo or updating the existing one).
+
+
+
+Creating the Model
+
+const todo = mongoose.model("todos", todoSchema);
+
+mongoose.model(): This creates a model based on the schema.
+"todos": The name of the MongoDB collection. Mongoose automatically pluralizes the collection name (so, if you pass "todo", it would look for a "todos" collection).
+todoSchema: The schema that defines the structure and validation rules for the collection.
+The model (todo) is used to interact with the "todos" collection in MongoDB. You can use it to create, read, update, and delete (CRUD) documents.
