@@ -1,0 +1,105 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background for the entire page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height to center the content vertically */
+  margin: 0; /* Remove default margin */
+}
+
+h1 {
+  color: #333; /* Darker color for the title */
+}
+
+.container {
+  background-color: #fff; /* White background for the container */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 500px; /* Fixed width for the container */
+}
+
+input {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 10px;
+  margin: 10px 0; /* Space between inputs */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Slightly rounded corners */
+}
+
+button {
+  padding: 10px;
+  margin: 5px; /* Space between buttons */
+  border: none;
+  border-radius: 4px; /* Slightly rounded corners */
+  color: #fff; /* White text for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.add {
+  background-color: #28a745; /* Green for add button */
+}
+
+.add:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.delete {
+  background-color: #dc3545; /* Red for delete button */
+}
+
+.delete:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.complete {
+  background-color: #356ddc; /* Blue for complete button */
+}
+
+.complete:hover {
+  background-color: #23c899; /* Darker blue on hover */
+}
+
+.edit {
+  background-color: #35dcd9; /* Teal for edit button */
+}
+
+.edit:hover {
+  background-color: #23c894; /* Darker teal on hover */
+}
+ul{
+  width: 400px;
+}
+
+li {
+  list-style-type: none; /* Remove bullets */
+  padding: 10px;
+  margin: 10px 0; /* Space between todos */
+  background-color: #e9ecef; /* Light gray background for todo items */
+  border-radius: 4px; /* Slightly rounded corners for todo items */
+  justify-content: space-between; /* Space between content */
+  align-items: center; /* Center items vertically */
+  
+}
+
+.completed {
+  text-decoration: line-through; /* Strikethrough for completed todos */
+  color: #6c757d; /* Gray color for completed text */
+}
+
+.todo-content {
+  flex-grow: 1; /* Allow this part to take up available space */
+  margin-right: 10px; /* Space between content and actions */
+}
+
+.todo-title {
+  font-size: 1.2em; /* Slightly larger font for the title */
+  margin: 0; /* Remove default margin */
+}
+
+.todo-description {
+  font-size: 1em; /* Standard font size for description */
+  margin: 5px 0; /* Space above and below the description */
+}
