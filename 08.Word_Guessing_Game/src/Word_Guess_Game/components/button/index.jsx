@@ -5,11 +5,11 @@ const Type = {
   ROUNDED: "rounded",
 };
 
-function Button({ onClick = () => {}, lable = "", type = Type.ROUNDED }) {
+function Button({ onClick = () => {}, label = "", type = Type.ROUNDED }) {
   const className = `btn_${type}`;
   return (
     <button className={className} onClick={onClick}>
-      {lable}
+      {label}
     </button>
   );
 }
