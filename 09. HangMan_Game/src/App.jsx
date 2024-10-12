@@ -1,14 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Button from "./components/Button/Button";
-import TextInput from "./components/TextInput/TextInput";
-import TextInputForm from "./components/TextInputForm/TextInputForm";
+import StartGame from "./components/pages/StartGame";
+import PlayGame from "./components/pages/PlayGame";
 
 function App() {
   return (
-    <div>
-      <TextInputForm />
-      
-    </div>
+   <Routes>
+    <Route path="/start" element={<StartGame />} />
+    <Route path="/play" element={<PlayGame />} />
+    <Route path="/" element={<div>Home</div>} />
+   </Routes>
   );
 }
 
